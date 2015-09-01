@@ -5,14 +5,15 @@ MAINTAINER [Alejandro Baez](https://twitter.com/a_baez)
 # Dependencies
 RUN yum install -y perl gcc-c++ pcre-devel readline-devel openssl-devel curl
 
-ENV OPENRESTY_VERSION 1.7.10.1
+ENV OPENRESTY_VERSION 1.9.3.1
 ENV OPENRESTY_PREFIX /opt/openresty
 ENV NGINX_PREFIX /opt/openresty/nginx
 ENV VAR_PREFIX /var/nginx
 
 # Download openresty
 WORKDIR /tmp
-RUN curl -o openresty.tar.gz "http://openresty.org/download/ngx_openresty-$OPENRESTY_VERSION.tar.gz"
+RUN curl -o openresty.tar.gz \
+  "http://openresty.org/download/ngx_openresty-$OPENRESTY_VERSION.tar.gz"
 
 RUN tar zxf openresty.tar.gz && mv ngx_openresty-$OPENRESTY_VERSION openresty
 
