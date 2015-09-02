@@ -37,9 +37,9 @@ RUN ./configure \
   --without-http_uwsgi_module \
   --without-http_scgi_module \
   --without-http_memcached_module \
-  -j${NPROC}
+  -j$(nproc)
 
-RUN make -j${NPROC}
+RUN make -j$(nproc)
 RUN make install
 
 # Link openresty configuration
@@ -53,9 +53,7 @@ WORKDIR $NGINX_PREFIX/
 
 RUN rm -rf /tmp/openresty
 
-
 ONBUILD RUN rm -rf conf/* html/*
 ONBUILD COPY nginx $NGINX_PREFIX/
 
-ONBUILD RUN rm -rf conf/* html/*
-ONBUILD COPY nginx /opt/openresty
+CMD ["nginx", "-g", "daemon off; error_log /dev/stderr info;"]
