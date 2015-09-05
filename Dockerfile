@@ -1,4 +1,4 @@
-FROM abaez/luarocks
+FROM abaez/luarocks:lua5.1
 
 MAINTAINER [Alejandro Baez](https://twitter.com/a_baez)
 
