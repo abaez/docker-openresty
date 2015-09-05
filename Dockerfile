@@ -1,10 +1,12 @@
-FROM abaez/luarocks:lua5.1
+FROM centos
 
 MAINTAINER [Alejandro Baez](https://twitter.com/a_baez)
 
 # Dependencies
-RUN yum install -y perl gcc-c++ pcre-devel readline-devel openssl-devel curl
+RUN yum install -y perl pcre-devel readline-devel openssl-devel curl \
+  make tar unzip gcc gcc-devel #gcc-c++
 
+# Openresty env
 ENV OPENRESTY_VERSION 1.9.3.1
 ENV OPENRESTY_PREFIX /opt/openresty
 ENV NGINX_PREFIX /opt/openresty/nginx
@@ -49,11 +51,13 @@ RUN ln -sf $NGINX_PREFIX/sbin/nginx /usr/local/bin/nginx \
  && ln -sf $OPENRESTY_PREFIX/luajit/bin/luajit-* $OPENRESTY_PREFIX/luajit/bin/lua \
  && ln -sf $OPENRESTY_PREFIX/luajit/bin/luajit-* /usr/local/bin/lua
 
+# lua env
+ENV LUA_LIB $OPENRESTY_PREFIX/lualib
+ENV WITH_LUA $OPENRESTY_PREFIX/luajit
+ENV LUA_INCLUDE $WITH_LUA/include/luajit-*
+
 WORKDIR $NGINX_PREFIX/
 
 RUN rm -rf /tmp/openresty
-
-#ONBUILD RUN rm -rf conf/* html/*
-#ONBUILD COPY nginx $NGINX_PREFIX/
 
 CMD ["nginx", "-g", "daemon off; error_log /dev/stderr info;"]
