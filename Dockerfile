@@ -54,7 +54,7 @@ RUN ln -sf $NGINX_PREFIX/sbin/nginx /usr/local/bin/nginx \
 # lua env
 ENV LUA_LIB $OPENRESTY_PREFIX/lualib
 ENV WITH_LUA $OPENRESTY_PREFIX/luajit
-ENV LUA_INCLUDE $WITH_LUA/include/luajit-*
+ENV LUA_INCLUDE $WITH_LUA/include/luajit-2.1
 
 WORKDIR $NGINX_PREFIX/
 
