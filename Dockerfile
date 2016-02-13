@@ -1,10 +1,10 @@
-FROM centos
+FROM alpine
 
 MAINTAINER [Alejandro Baez](https://twitter.com/a_baez)
 
 # Dependencies
-RUN yum install -y perl pcre-devel readline-devel openssl-devel curl \
-  make tar unzip gcc gcc-devel #gcc-c++
+RUN apk add --update perl pcre-dev readline-dev openssl-dev curl \
+  make tar unzip gcc libc-dev coreutils #gcc-c++
 
 # Openresty env
 ENV OPENRESTY_VERSION 1.9.3.1
