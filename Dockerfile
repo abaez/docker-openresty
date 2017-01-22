@@ -1,23 +1,23 @@
 FROM alpine
 
-MAINTAINER [Alejandro Baez](https://twitter.com/a_baez)
+LABEL maintainer "Alejandro Baez https://twitter.com/a_baez"
 
 # Dependencies
 RUN apk add --update perl pcre-dev readline-dev openssl-dev curl \
   make tar unzip gcc libc-dev coreutils #gcc-c++
 
 # Openresty env
-ENV OPENRESTY_VERSION 1.9.7.2
+ENV OPENRESTY_VERSION 1.11.2.2
 ENV OPENRESTY_PREFIX /opt/openresty
 ENV NGINX_PREFIX /opt/openresty/nginx
 ENV VAR_PREFIX /var/nginx
 
 # Download openresty
 WORKDIR /tmp
-RUN curl -o openresty.tar.gz \
-  "http://openresty.org/download/ngx_openresty-$OPENRESTY_VERSION.tar.gz"
-
-RUN tar zxf openresty.tar.gz && mv ngx_openresty-$OPENRESTY_VERSION openresty
+RUN curl -o openresty.tar.gz -k \
+  "https://openresty.org/download/openresty-${OPENRESTY_VERSION}.tar.gz"
+  
+RUN tar xzf ./openresty.tar.gz && mv openresty-${OPENRESTY_VERSION} openresty
 
 # Build openresty
 WORKDIR /tmp/openresty
