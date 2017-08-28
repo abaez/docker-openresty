@@ -7,7 +7,7 @@ RUN apk add --update perl pcre-dev readline-dev openssl-dev curl \
   make tar unzip gcc libc-dev coreutils #gcc-c++
 
 # Openresty env
-ENV OPENRESTY_VERSION 1.11.2.2
+ENV OPENRESTY_VERSION 1.11.2.3
 ENV OPENRESTY_PREFIX /opt/openresty
 ENV NGINX_PREFIX /opt/openresty/nginx
 ENV VAR_PREFIX /var/nginx

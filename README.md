@@ -24,6 +24,7 @@ You can pick the version of lua you want by using one of the following:
     * latest: the most current version of luajit provided by openresty.
     * lua5.1: the most current version of lua-5.1.
 * version of openresty by tags:
+    * 1.11.2.2
     * 1.9.7.2
     * 1.9.3.1
 
